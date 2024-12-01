@@ -13,6 +13,11 @@ package:
     dependencies:
       - test-unit
       - quickcheck
+  publish:
+    version: 1.1.0
+    location:
+      githubOwner: danieljharvey
+      githubRepo: purescript-refined
 workspace:
   packageSet:
     registry: 61.2.0
