@@ -1,0 +1,19 @@
+package:
+  name: refined
+  dependencies:
+    - argonaut
+    - console
+    - effect
+    - free
+    - prelude
+    - typelevel
+    - typelevel-prelude
+  test:
+    main: Test.Main
+    dependencies:
+      - test-unit
+      - quickcheck
+workspace:
+  packageSet:
+    registry: 61.2.0
+  extraPackages: {}
