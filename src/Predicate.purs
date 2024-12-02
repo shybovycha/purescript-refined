@@ -10,6 +10,7 @@ import Data.Typelevel.Num.Reps (D0, D1)
 import Data.Typelevel.Undefined (undefined)
 import Data.Foldable (class Foldable, length)
 import Data.Tuple (Tuple(..))
+import Data.String as Strings
 
 class Predicate p x where
   validate :: p -> x -> Either (RefinedError x) x
@@ -82,6 +83,17 @@ instance predicateSizeGreaterThan
           false -> Left (SizeGreaterThanError val x)
       where
         val 
+          = toInt (undefined :: n)
+
+instance predicateStringLengthGreaterThan
+  :: Nat n
+  => Predicate (SizeGreaterThan n) String where
+    validate _ x
+      = case Strings.length x > val of
+          true  -> Right x
+          false -> Left (NonEmptyError x)
+      where
+        val
           = toInt (undefined :: n)
 
 -- | A 'Predicate' ensuring that the length of a foldable is less than a given int

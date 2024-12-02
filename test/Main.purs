@@ -19,7 +19,7 @@ import Data.Argonaut.Encode.Class (encodeJson)
 import Data.Argonaut.Core (fromNumber, fromString, toNumber)
 import Data.Argonaut.Decode (JsonDecodeError)
 
-import Data.Refined (And, EqualTo, From, GreaterThan, IdPred, LessThan, Not, Or, Positive, Refined(..), RefinedError(..), These(..), To, refine, unrefine, unsafeRefine, validate)
+import Data.Refined (NonEmpty, And, EqualTo, From, GreaterThan, IdPred, LessThan, Not, Or, Positive, Refined(..), RefinedError(..), These(..), To, refine, unrefine, unsafeRefine, validate)
 
 type TestDecodeShape
   = { idPred   :: Refined IdPred Number
@@ -66,6 +66,14 @@ tests = do
     test "Succeeds To" do
       let ans = validate (undefined :: (To D9)) 8.9
       Assert.equal ans (Right 8.9)
+
+    test "Validates non-empty string" do
+      let ans = validate (undefined :: NonEmpty) "test"
+      Assert.equal ans (Right "test")
+
+    test "Validates empty string" do
+      let ans = validate (undefined :: NonEmpty) ""
+      Assert.equal ans (Left (NonEmptyError ""))
 
     test "Validates positive" do
       let ans = validate (undefined :: Positive) 10.0

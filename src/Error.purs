@@ -18,6 +18,7 @@ data RefinedError a
   | FromToError Int Int a
   | EqualToError Int a
   | NotEqualToError Int a
+  | NonEmptyError String
 
 derive instance eqRefinedError 
   :: (Eq a) => Eq (RefinedError a)
@@ -53,4 +54,6 @@ instance showRefinedError :: (Show a) => Show (RefinedError a) where
      = show a <> " should be equal to " <> show n <> " but is not."
   show (NotEqualToError n a)
      = show a <> " should not be equal to " <> show n <> " but it is."
+  show (NonEmptyError a)
+      = a <> " should be non-empty string but it is"
 
