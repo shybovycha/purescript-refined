@@ -10,6 +10,7 @@
             "effect",
             "free",
             "prelude",
+            "quickcheck",
             "typelevel",
             "typelevel-prelude"
           ],
@@ -41,6 +42,7 @@
             "integers",
             "invariant",
             "lazy",
+            "lcg",
             "lists",
             "maybe",
             "newtype",
@@ -52,6 +54,8 @@
             "prelude",
             "profunctor",
             "profunctor-lenses",
+            "quickcheck",
+            "random",
             "record",
             "refs",
             "safe-coerce",
@@ -69,7 +73,6 @@
         },
         "test": {
           "dependencies": [
-            "quickcheck",
             "test-unit"
           ],
           "build_plan": [
